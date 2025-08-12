@@ -49,7 +49,7 @@ Uninstall installed library
 ## 如何安装
 1. `pip install Pyinstaller`
 2. 打包代码 
-    ./build.sh
+    ./build.bat
 
 ## `pybuild` 用法
 
