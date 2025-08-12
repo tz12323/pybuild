@@ -64,6 +64,7 @@ set COMMAND=pyinstaller --onefile ^
     --add-binary "!PYTHON_LIB!;." ^
     !RESOURCES_ARG! ^
     --windowed ^
+    --console ^
     --clean ^
     -n pybuild ^
     main.py

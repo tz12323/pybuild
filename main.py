@@ -67,7 +67,7 @@ def print_usage(program_name):
     print("  init                       根据CMake.json创建新项目")
     print("  install <path>             安装生成的文件,如果不设置path则选择默认路径")
     print("  uninstall                  卸载安装的库")
-    print("  get <下载链接>              使用git安装第三方库")
+    print("  get <下载链接>             使用git安装第三方库")
     print("    -d, --debug              使用Debug模式构建 (默认)")
     print("    -r, --release            使用Release模式构建")
     print("    -p, --prefix             指定安装目录")
@@ -1080,4 +1080,9 @@ def main():
         return 1
 
 if __name__ == "__main__":
-    sys.exit(main())
+    import time
+    start = time.time()
+    res = main()
+    end = time.time()
+    print(f"耗时 : {end-start}s")
+    sys.exit(res)
