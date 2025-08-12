@@ -96,7 +96,7 @@ def print_usage(program_name):
     print("  install <path>                 Install built files (uses default path if omitted)")
     print("  uninstall                      Uninstall installed library")
     print("  get <urls>                     use git to install third party library")
-    print("    -d, --debug                  Build using Debug mode (dafault))")
+    print("    -d, --debug                  Build using Debug mode (dafault)")
     print("    -r, --release                Build using Release mode")
     print("    -p, --prefix                 Specify installation directory")
     print("Examples:")
