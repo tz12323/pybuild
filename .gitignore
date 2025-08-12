@@ -5,6 +5,6 @@ build/
 dist/
 wheels/
 *.egg-info
-
+pybuild.spec
 # Virtual environments
 .venv
