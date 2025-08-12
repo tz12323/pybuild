@@ -1,5 +1,14 @@
 # Pybuild is a project designed for creating C++ project structures.      
 
+## How to install
+1. `pip install Pyinstaller`
+2. packge the code
+    - Linux/macOS : 
+    `pyinstaller --onefile -n pybuild main.py`
+
+    - Windows :
+    `pyinstaller --onefile -n pybuild main.py`
+
 ## `pybuild` Usage
 pybuild [options] <project-name>
 
@@ -34,12 +43,23 @@ Install built files (uses default path if omitted)
 ### `uninstall`
 Uninstall installed library
 
-### `get <下载连接>`
+### `get <url>`
 - `-d, --debug`: Build using Debug mode (dafault)
 - `-r, --release`: Build using Release mode
 - `-p, --prefix`: Specify installation directory
 
-# `pybuild` 用法
+# Pybuild 是一个专为创建 C++ 项目结构而设计的项目。
+
+## 如何安装
+1. `pip install Pyinstaller`
+2. 打包代码 
+    - Linux/macOS : 
+    `pyinstaller --onefile -n pybuild main.py`
+
+    - Windows :
+    `pyinstaller --onefile -n pybuild main.py`
+
+## `pybuild` 用法
 
 ```
 pybuild [选项] <项目名>
