@@ -3,11 +3,7 @@
 ## How to install
 1. `pip install Pyinstaller`
 2. packge the code
-    - Linux/macOS : 
-    `pyinstaller --onefile -n pybuild main.py`
-
-    - Windows :
-    `pyinstaller --onefile -n pybuild main.py`
+    ./build.sh
 
 ## `pybuild` Usage
 pybuild [options] <project-name>
@@ -53,11 +49,7 @@ Uninstall installed library
 ## 如何安装
 1. `pip install Pyinstaller`
 2. 打包代码 
-    - Linux/macOS : 
-    `pyinstaller --onefile -n pybuild main.py`
-
-    - Windows :
-    `pyinstaller --onefile -n pybuild main.py`
+    ./build.sh
 
 ## `pybuild` 用法
 
