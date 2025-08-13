@@ -113,7 +113,7 @@ def print_usage(program_name):
         print("\n注意: Linux平台需要安装build-essential和cmake:")
         print("      sudo apt-get install build-essential cmake")
 
-def create_precompile_headers(add_precompile_headers) -> None:
+def create_precompile_headers(add_precompile_headers) -> bool:
     """创建预编译头文件"""
     if not add_precompile_headers:
         return True
@@ -149,7 +149,7 @@ def create_precompile_headers(add_precompile_headers) -> None:
         # 切换回原目录
         os.chdir(cwd)
 
-def create_cmake_json(project_name:list, project_type:list, deps:list, num_deps:list, add_precompile_headers:list, include_dir:list) -> bool:
+def create_cmake_json(project_name, project_type, deps, num_deps, add_precompile_headers, include_dir) -> bool:
     """创建CMake.json配置文件"""
     try:
         config = {
