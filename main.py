@@ -861,7 +861,12 @@ def build_project(args):
         # 构建阶段
         if not configure_only:
             if PLATFORM_WINDOWS:
-                build_tool = "cmake --build ."
+                try:
+                    import multiprocessing
+                    core_count = multiprocessing.cpu_count()
+                    build_tool = f"cmake --build . --parallel {core_count}"
+                except:
+                    build_tool = "cmake --build ."
             else:
                 # 尝试获取核心数
                 try:
