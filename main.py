@@ -681,7 +681,7 @@ def execute_command(command):
     """执行命令并检查状态"""
     print(f"执行命令: {command}")
     try:
-        result = subprocess.run(command, shell=True, check=True, capture_output=True, text=True)
+        result = subprocess.run(command, shell=True, check=True, text=True)
         return True
     except subprocess.CalledProcessError as e:
         print(f"命令执行失败: {e.stderr}")
