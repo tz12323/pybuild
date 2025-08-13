@@ -31,7 +31,7 @@ else:  # Linux
 
 MAX_PATH_LEN = 1024
 BUFFER_SIZE = 1024
-MAX_DEPS = 20  # 最大依赖数
+MAX_DEPS = 100  # 最大依赖数
 
 def print_platform_info():
     """显示平台信息"""
@@ -465,13 +465,16 @@ def create_new_project(args):
             print_usage(args[0])
             return 0
         elif (arg == "-D" or arg == "--dep") and i + 1 < len(args):
-            # 获取依赖项名称
-            i += 1
-            if len(deps_from_cli) < MAX_DEPS:
-                deps_from_cli.append(args[i])
-            else:
-                print(f"警告: 已达到最大依赖项数量({MAX_DEPS})，忽略依赖项: {args[i]}")
-            i += 1
+            while i < len(args):
+                if  args[i+1][0] != '-':
+                    i += 1
+                    if len(deps_from_cli) < MAX_DEPS:
+                        deps_from_cli.append(args[i])
+                    else:
+                        print(f"警告: 已达到最大依赖项数量({MAX_DEPS})，忽略依赖项: {args[i]}")
+                else:
+                    break
+            i+=1
         elif not project_name_set and not arg.startswith("-"):
             project_name = arg
             project_name_set = True
