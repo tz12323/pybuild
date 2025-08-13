@@ -11,7 +11,7 @@ import re
 PLATFORM_WINDOWS = platform.system() == "Windows"
 PLATFORM_MACOS = platform.system() == "Darwin"
 PLATFORM_LINUX = platform.system() == "Linux"
-CMAKE_SOURCE_DIR = "CMAKE_SOURCE_DIR"
+CMAKE_SOURCE_DIR = "{CMAKE_SOURCE_DIR}"
 # 路径和文件扩展名定义
 if PLATFORM_WINDOWS:
     PATH_SEP = '\\'
@@ -262,11 +262,9 @@ def create_cmakelists(project_name, project_type, deps, num_deps, add_precompile
             
             if project_type == "executable":
                 f.write(
-                    f"""set_target_properties(${project_name} PROPERTIES
-    RUNTIME_OUTPUT_DIRECTORY ${CMAKE_SOURCE_DIR}/bin  # 可执行文件
-    ARCHIVE_OUTPUT_DIRECTORY ${CMAKE_SOURCE_DIR}/lib/static  # 静态库
-    LIBRARY_OUTPUT_DIRECTORY ${CMAKE_SOURCE_DIR}/lib/shared  # 共享库
-)\n""")
+                    f"""set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${CMAKE_SOURCE_DIR}/bin)  # 可执行文件
+                    set(CMAKE_ARCHIVE_OUTPUT_DIRECTORY ${CMAKE_SOURCE_DIR}/lib/static)  # 静态库
+                    set(CMAKE_LIBRARY_OUTPUT_DIRECTORY ${CMAKE_SOURCE_DIR}/lib/shared)  # 共享库\n""")
                 f.write(f"add_executable({project_name}\n")
                 f.write("    src/main.cpp\n")
                 f.write(")\n")
@@ -278,11 +276,10 @@ def create_cmakelists(project_name, project_type, deps, num_deps, add_precompile
                 f.write("    RUNTIME DESTINATION bin\n")
                 f.write(")\n")
             elif project_type == "static":
-                f.write(f"""set_target_properties(${project_name} PROPERTIES
-    RUNTIME_OUTPUT_DIRECTORY ${CMAKE_SOURCE_DIR}/bin  # 可执行文件
-    ARCHIVE_OUTPUT_DIRECTORY ${CMAKE_SOURCE_DIR}/lib/static  # 静态库
-    LIBRARY_OUTPUT_DIRECTORY ${CMAKE_SOURCE_DIR}/lib/shared  # 共享库
-)\n""")
+                f.write(
+                    f"""set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${CMAKE_SOURCE_DIR}/bin)  # 可执行文件
+                    set(CMAKE_ARCHIVE_OUTPUT_DIRECTORY ${CMAKE_SOURCE_DIR}/lib/static)  # 静态库
+                    set(CMAKE_LIBRARY_OUTPUT_DIRECTORY ${CMAKE_SOURCE_DIR}/lib/shared)  # 共享库\n""")
                 f.write(f"add_library({project_name} STATIC\n")
                 f.write(f"    src/{project_name}.cpp\n")
                 f.write(")\n")
@@ -295,11 +292,10 @@ def create_cmakelists(project_name, project_type, deps, num_deps, add_precompile
                 f.write(")\n")
                 f.write(f"install(FILES include/{project_name}.h DESTINATION include)\n")
             elif project_type == "shared":
-                f.write(f"""set_target_properties(${project_name} PROPERTIES
-    RUNTIME_OUTPUT_DIRECTORY ${CMAKE_SOURCE_DIR}/bin  # 可执行文件
-    ARCHIVE_OUTPUT_DIRECTORY ${CMAKE_SOURCE_DIR}/lib/static  # 静态库
-    LIBRARY_OUTPUT_DIRECTORY ${CMAKE_SOURCE_DIR}/lib/shared  # 共享库
-)\n""")
+                f.write(
+                    f"""set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${CMAKE_SOURCE_DIR}/bin)  # 可执行文件
+                    set(CMAKE_ARCHIVE_OUTPUT_DIRECTORY ${CMAKE_SOURCE_DIR}/lib/static)  # 静态库
+                    set(CMAKE_LIBRARY_OUTPUT_DIRECTORY ${CMAKE_SOURCE_DIR}/lib/shared)  # 共享库\n""")
                 f.write(f"add_library({project_name} SHARED\n")
                 f.write(f"    src/{project_name}.cpp\n")
                 f.write(")\n")
@@ -314,11 +310,9 @@ def create_cmakelists(project_name, project_type, deps, num_deps, add_precompile
             else:
                 print("未设置项目类型,自动选择为:executable")
                 f.write(
-                    f"""set_target_properties(${project_name} PROPERTIES
-    RUNTIME_OUTPUT_DIRECTORY ${CMAKE_SOURCE_DIR}/bin  # 可执行文件
-    ARCHIVE_OUTPUT_DIRECTORY ${CMAKE_SOURCE_DIR}/lib/static  # 静态库
-    LIBRARY_OUTPUT_DIRECTORY ${CMAKE_SOURCE_DIR}/lib/shared  # 共享库
-)""")
+                    f"""set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${CMAKE_SOURCE_DIR}/bin)  # 可执行文件
+                    set(CMAKE_ARCHIVE_OUTPUT_DIRECTORY ${CMAKE_SOURCE_DIR}/lib/static)  # 静态库
+                    set(CMAKE_LIBRARY_OUTPUT_DIRECTORY ${CMAKE_SOURCE_DIR}/lib/shared)  # 共享库\n""")
                 f.write(f"add_executable({project_name}\n")
                 f.write("    src/main.cpp\n")
                 f.write(")\n")
